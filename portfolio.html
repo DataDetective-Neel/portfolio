@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indraneel Chatterjee - Data Science Portfolio V2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#00d4ff',
+                        'secondary': '#0099cc',
+                        'accent': '#ff6b6b',
+                        'dark': '#0a0a0a',
+                        'dark-light': '#1a1a1a',
+                        'dark-lighter': '#2a2a2a'
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        /* Particles Background */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .particle {
+            position: absolute;
+            background: #00d4ff;
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Glowing Button */
+        .glow-btn {
+            position: relative;
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            border: none;
+            border-radius: 50px;
+            padding: 12px 30px;
+            color: #0a0a0a;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+        }
+        
+        .glow-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.5);
+        }
+        
+        /* Card Animations */
+        .card {
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.1);
+        }
+        
+        /* Skills Card Hover Animation */
+        .skill-card {
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .skill-card:hover::before {
+            left: 100%;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-15px) scale(1.05);
+            border-color: rgba(0, 212, 255, 0.5);
+            box-shadow: 0 25px 50px rgba(0, 212, 255, 0.2);
+            background: rgba(0, 212, 255, 0.05);
+        }
+        
+        .skill-card:hover .skill-icon {
+            color: #00d4ff;
+            transform: scale(1.2) rotate(10deg);
+        }
+        
+        .skill-card:hover .skill-title {
+            color: #00d4ff;
+        }
+        
+        .skill-card .skill-icon {
+            transition: all 0.4s ease;
+        }
+        
+        .skill-card .skill-title {
+            transition: all 0.4s ease;
+        }
+        
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .fade-in.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .slide-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease;
+        }
+        
+        .slide-left.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .slide-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease;
+        }
+        
+        .slide-right.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        /* Circular Progress */
+        .circular-progress {
+            position: relative;
+            width: 120px;
+            height: 120px;
+        }
+        
+        .circular-progress svg {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+        
+        .circular-progress circle {
+            fill: none;
+            stroke-width: 8;
+            stroke-linecap: round;
+        }
+        
+        .progress-bg {
+            stroke: rgba(255, 255, 255, 0.1);
+        }
+        
+        .progress-bar {
+            stroke: #00d4ff;
+            stroke-dasharray: 283;
+            stroke-dashoffset: 283;
+            transition: stroke-dashoffset 2s ease;
+        }
+        
+        /* Timeline */
+        .timeline {
+            position: relative;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #00d4ff, #0099cc);
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin: 50px 0;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background: #00d4ff;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+        
+        /* Typing Animation */
+        .typing {
+            border-right: 2px solid #00d4ff;
+            animation: typing 3s steps(30) infinite, blink 1s infinite;
+        }
+        
+        @keyframes typing {
+            0%, 100% { width: 0; }
+            50% { width: 100%; }
+        }
+        
+        @keyframes blink {
+            0%, 50% { border-color: transparent; }
+            51%, 100% { border-color: #00d4ff; }
+        }
+        
+        /* Stagger delays */
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+        .delay-600 { animation-delay: 0.6s; }
+    </style>
+</head>
+<body>
+    <!-- Particles Background -->
+    <div class="particles" id="particles"></div>
+    
+<!-- Navigation -->
+<nav class="fixed top-0 w-full bg-dark/80 backdrop-blur-md z-50 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 py-4">
+        <div class="flex justify-between items-center">
+            <div class="text-2xl font-bold gradient-text">IC</div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="text-gray-300 hover:text-primary transition-colors">Home</a>
+                <a href="#about" class="text-gray-300 hover:text-primary transition-colors">About</a>
+                <a href="#journey" class="text-gray-300 hover:text-primary transition-colors">Journey</a>
+                <a href="#certifications" class="text-gray-300 hover:text-primary transition-colors">Certifications</a>
+                <a href="#education" class="text-gray-300 hover:text-primary transition-colors">Education</a>
+                <a href="#experience" class="text-gray-300 hover:text-primary transition-colors">Experience</a>
+                <a href="#skills" class="text-gray-300 hover:text-primary transition-colors">Skills</a>
+                <a href="#languages" class="text-gray-300 hover:text-primary transition-colors">Languages</a>
+                <a href="#contact" class="text-gray-300 hover:text-primary transition-colors">Contact</a>
+            </div>
+            <button class="md:hidden text-primary" onclick="toggleMenu()">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2">
+            <a href="#home" class="block text-gray-300 hover:text-primary transition-colors py-2">Home</a>
+            <a href="#about" class="block text-gray-300 hover:text-primary transition-colors py-2">About</a>
+            <a href="#journey" class="block text-gray-300 hover:text-primary transition-colors py-2">Journey</a>
+            <a href="#certifications" class="block text-gray-300 hover:text-primary transition-colors py-2">Certifications</a>
+            <a href="#education" class="block text-gray-300 hover:text-primary transition-colors py-2">Education</a>
+            <a href="#experience" class="block text-gray-300 hover:text-primary transition-colors py-2">Experience</a>
+            <a href="#skills" class="block text-gray-300 hover:text-primary transition-colors py-2">Skills</a>
+            <a href="#languages" class="block text-gray-300 hover:text-primary transition-colors py-2">Languages</a>
+            <a href="#contact" class="block text-gray-300 hover:text-primary transition-colors py-2">Contact</a>
+        </div>
+    </div>
+</nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative">
+        <div class="max-w-7xl mx-auto px-6 py-20 text-center">
+            <div class="mb-8">
+                <h1 class="text-6xl md:text-8xl font-bold mb-6">
+                    Hi, I'm <span class="gradient-text">Indraneel</span>
+                </h1>
+                <div class="text-2xl md:text-4xl mb-8 h-16">
+                    <span class="typing overflow-hidden whitespace-nowrap">Aspiring Data Scientist</span>
+                </div>
+                <p class="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
+                    Transforming data into insights, one algorithm at a time. Currently mastering the art of machine learning and statistical analysis.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                    <a href="#contact" class="glow-btn">
+                        <i class="fas fa-rocket mr-2"></i>
+                        Let's Connect
+                    </a>
+                    <a href="https://github.com/DataDetective-Neel" target="_blank" class="border-2 border-primary text-primary px-8 py-3 rounded-full font-semibold hover:bg-primary hover:text-dark transition-all duration-300">
+                        <i class="fab fa-github mr-2"></i>
+                        View GitHub
+                    </a>
+                </div>
+            </div>
+            <div class="mt-16">
+                <div class="w-80 h-80 mx-auto relative">
+                    <div class="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-full opacity-20 animate-pulse"></div>
+                    <div class="absolute inset-4 bg-gradient-to-r from-secondary to-primary rounded-full opacity-30 animate-pulse" style="animation-delay: 0.5s;"></div>
+                    <div class="absolute inset-8 bg-gradient-to-r from-primary to-secondary rounded-full opacity-40 animate-pulse" style="animation-delay: 1s;"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <i class="fas fa-brain text-8xl gradient-text"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-5xl font-bold gradient-text mb-4">About Me</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="slide-left">
+                    <h3 class="text-3xl font-semibold mb-8 gradient-text">My Data Science Journey</h3>
+                    <p class="text-gray-300 mb-6 text-lg leading-relaxed">
+                        As a passionate data science enthusiast, I'm on a mission to unlock the hidden stories within data. My journey began with curiosity about how numbers can shape our understanding of the world.
+                    </p>
+                    <p class="text-gray-300 mb-8 text-lg leading-relaxed">
+                        Through rigorous learning and hands-on practice, I'm building expertise in machine learning, statistical analysis, and data visualization. Every dataset is a new adventure waiting to be explored.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="card p-6 text-center fade-in delay-100">
+                            <i class="fas fa-graduation-cap text-4xl text-primary mb-4"></i>
+                            <h4 class="font-semibold text-xl mb-2">Continuous Learner</h4>
+                            <p class="text-gray-400">Always Growing</p>
+                        </div>
+                        <div class="card p-6 text-center fade-in delay-200">
+                            <i class="fas fa-code text-4xl text-primary mb-4"></i>
+                            <h4 class="font-semibold text-xl mb-2">Python Expert</h4>
+                            <p class="text-gray-400">Data Focused</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide-right">
+                    <div class="card p-8">
+                        <h3 class="text-3xl font-semibold mb-8 gradient-text">Quick Facts</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-center fade-in delay-100">
+                                <div class="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-map-marker-alt text-dark"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Location</h4>
+                                    <p class="text-gray-400">Jaipur, India</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center fade-in delay-200">
+                                <div class="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-envelope text-dark"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Status</h4>
+                                    <p class="text-gray-400">Open to Opportunities</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center fade-in delay-300">
+                                <div class="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-heart text-dark"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Passion</h4>
+                                    <p class="text-gray-400">ML & AI Innovation</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center fade-in delay-400">
+                                <div class="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-target text-dark"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Goal</h4>
+                                    <p class="text-gray-400">Data Scientist</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Journey Timeline -->
+    <section id="journey" class="py-20 relative">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-5xl font-bold gradient-text mb-4">My Learning Journey</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item fade-in">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="card p-8">
+                            <h3 class="text-2xl font-semibold gradient-text mb-4">Python 3 Programming Specialization</h3>
+                            <p class="text-gray-400 mb-4">University of Michigan</p>
+                            <p class="text-gray-300 mb-4">Mastered Python fundamentals, data structures, web scraping, and API integration. Built a solid foundation for data science applications.</p>
+                            <span class="inline-block bg-green-500 text-white px-4 py-2 rounded-full text-sm font-medium">Completed</span>
+                        </div>
+                        <div></div>
+                    </div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div></div>
+                        <div class="card p-8">
+                            <h3 class="text-2xl font-semibold gradient-text mb-4">IBM Data Science Professional Certificate</h3>
+                            <p class="text-gray-400 mb-4">IBM</p>
+                            <p class="text-gray-300 mb-4">Comprehensive program covering data science methodology, Python for data science, machine learning, and applied data science projects.</p>
+                            <span class="inline-block bg-yellow-500 text-white px-4 py-2 rounded-full text-sm font-medium">In Progress</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Certifications Section -->
+<section id="certifications" class="py-20 relative">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16 fade-in">
+            <h2 class="text-5xl font-bold gradient-text mb-4">Certifications</h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
+        </div>
+        <div class="grid md:grid-cols-2 gap-12">
+            <!-- Completed Certifications -->
+            <div class="slide-left">
+                <h3 class="text-3xl font-semibold mb-8 gradient-text flex items-center">
+                    <i class="fas fa-certificate mr-4"></i>
+                    Completed Certifications
+                </h3>
+                <div class="space-y-8">
+                    <!-- Python 3 Programming Specialization -->
+                    <div class="card p-8 fade-in delay-100">
+                        <div class="flex items-start justify-between mb-6">
+                            <div class="flex items-center">
+                                <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center mr-6">
+                                    <i class="fab fa-python text-3xl text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-semibold gradient-text mb-2">Python 3 Programming Specialization</h4>
+                                    <p class="text-gray-400 mb-2">University of Michigan - Coursera</p>
+                                    <div class="flex items-center mb-3">
+                                        <i class="fas fa-calendar-alt text-green-500 mr-2"></i>
+                                        <span class="text-sm text-gray-300">Completed 2025</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-end">
+                                <span class="bg-green-500/20 text-green-400 px-4 py-2 rounded-full text-sm font-medium mb-3">
+                                    <i class="fas fa-check-circle mr-1"></i>
+                                    Verified
+                                </span>
+                                <div class="flex space-x-2">
+                                    <a href="https://www.coursera.org/account/accomplishments/specialization/1G4VMJZ9JCG7" target="_blank" 
+                                       class="bg-primary/20 text-primary px-4 py-2 rounded-full text-xs font-medium hover:bg-primary hover:text-dark transition-all duration-300">
+                                        <i class="fas fa-external-link-alt mr-1"></i>
+                                        View Certificate
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 mb-4">
+                            Comprehensive specialization covering Python fundamentals, data structures, web scraping, databases, 
+                            and API integration. Built strong foundation for data science applications through hands-on projects.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm">Python</span>
+                            <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm">Data Structures</span>
+                            <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm">Web Scraping</span>
+                            <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm">APIs</span>
+                            <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm">Databases</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- In Progress Certifications -->
+            <div class="slide-right">
+                <h3 class="text-3xl font-semibold mb-8 gradient-text flex items-center">
+                    <i class="fas fa-hourglass-half mr-4"></i>
+                    In Progress
+                </h3>
+                <div class="space-y-8">
+                    <!-- IBM Data Science Professional Certificate -->
+                    <div class="card p-8 fade-in delay-200">
+                        <div class="flex items-start justify-between mb-6">
+                            <div class="flex items-center">
+                                <div class="w-16 h-16 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full flex items-center justify-center mr-6">
+                                    <i class="fas fa-brain text-3xl text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-semibold gradient-text mb-2">IBM Data Science Professional Certificate</h4>
+                                    <p class="text-gray-400 mb-2">IBM - Coursera</p>
+                                    <div class="flex items-center mb-3">
+                                        <i class="fas fa-clock text-yellow-500 mr-2"></i>
+                                        <span class="text-sm text-gray-300">Expected: 2025</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-end">
+                                <span class="bg-yellow-500/20 text-yellow-400 px-4 py-2 rounded-full text-sm font-medium mb-3">
+                                    <i class="fas fa-spinner mr-1"></i>
+                                    In Progress
+                                </span>
+                                <div class="w-32 bg-gray-700 rounded-full h-3">
+                                    <div class="bg-gradient-to-r from-yellow-500 to-yellow-600 h-3 rounded-full" style="width: 80%"></div>
+                                </div>
+                                <span class="text-xs text-gray-400 mt-1">80% Complete</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 mb-4">
+                            Comprehensive program covering data science methodology, Python for data science, machine learning, 
+                            data visualization, and applied data science capstone projects.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm">Data Science</span>
+                            <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm">Machine Learning</span>
+                            <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm">Data Visualization</span>
+                            <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm">SQL</span>
+                            <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm">Jupyter</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Certification Stats -->
+        <div class="mt-16 grid md:grid-cols-3 gap-8">
+            <div class="card p-8 text-center fade-in delay-300">
+                <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-trophy text-2xl text-white"></i>
+                </div>
+                <h3 class="text-2xl font-bold gradient-text mb-2">1</h3>
+                <p class="text-gray-400">Completed Specializations</p>
+            </div>
+            <div class="card p-8 text-center fade-in delay-400">
+                <div class="w-16 h-16 bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-graduation-cap text-2xl text-white"></i>
+                </div>
+                <h3 class="text-2xl font-bold gradient-text mb-2">1</h3>
+                <p class="text-gray-400">In Progress Programs</p>
+            </div>
+            <div class="card p-8 text-center fade-in delay-500">
+                <div class="w-16 h-16 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-code text-2xl text-dark"></i>
+                </div>
+                <h3 class="text-2xl font-bold gradient-text mb-2">100+</h3>
+                <p class="text-gray-400">Hours of Learning</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-5xl font-bold gradient-text mb-4">Education</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
+            </div>
+            <div class="space-y-8">
+                <!-- University Education -->
+                <div class="card p-8 fade-in delay-100">
+                    <div class="grid md:grid-cols-4 gap-8 items-center">
+                        <div class="text-center">
+                            <div class="w-20 h-20 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-university text-3xl text-dark"></i>
+                            </div>
+                            <span class="text-primary font-semibold">2024 - 2028</span>
+                        </div>
+                        <div class="md:col-span-3">
+                            <h3 class="text-2xl font-semibold gradient-text mb-2">Bachelor of Technology (B.Tech)</h3>
+                            <h4 class="text-xl text-gray-300 font-medium mb-2">Computer Science & Engineering</h4>
+                            <p class="text-gray-400 mb-4">NIIT University, Neemrana, Rajasthan</p>
+                            <div class="flex items-center space-x-6">
+                                <div class="flex items-center">
+                                    <i class="fas fa-trophy text-yellow-500 mr-2"></i>
+                                    <span class="text-lg font-semibold">CGPA: <span class="gradient-text">9.20</span></span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-calendar-check text-green-500 mr-2"></i>
+                                    <span class="text-gray-300">1st Year Completed</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Class 12th Education -->
+                <div class="card p-8 fade-in delay-200">
+                    <div class="grid md:grid-cols-4 gap-8 items-center">
+                        <div class="text-center">
+                            <div class="w-20 h-20 bg-gradient-to-r from-secondary to-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-school text-3xl text-dark"></i>
+                            </div>
+                            <span class="text-secondary font-semibold">2024</span>
+                        </div>
+                        <div class="md:col-span-3">
+                            <h3 class="text-2xl font-semibold gradient-text mb-2">Higher Secondary (Class XII)</h3>
+                            <h4 class="text-xl text-gray-300 font-medium mb-2">Science Stream (PCM)</h4>
+                            <p class="text-gray-400 mb-4">KPS Udaan, Jaipur, Rajasthan</p>
+                            <div class="flex items-center">
+                                <i class="fas fa-percentage text-blue-500 mr-2"></i>
+                                <span class="text-lg font-semibold">Percentage: <span class="gradient-text">92.8%</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Class 10th Education -->
+                <div class="card p-8 fade-in delay-300">
+                    <div class="grid md:grid-cols-4 gap-8 items-center">
+                        <div class="text-center">
+                            <div class="w-20 h-20 bg-gradient-to-r from-accent to-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-graduation-cap text-3xl text-dark"></i>
+                            </div>
+                            <span class="text-accent font-semibold">2022</span>
+                        </div>
+                        <div class="md:col-span-3">
+                            <h3 class="text-2xl font-semibold gradient-text mb-2">Secondary School (Class X)</h3>
+                            <h4 class="text-xl text-gray-300 font-medium mb-2">CBSE Board</h4>
+                            <p class="text-gray-400 mb-4">KPS Udaan, Jaipur, Rajasthan</p>
+                            <div class="flex items-center">
+                                <i class="fas fa-star text-yellow-500 mr-2"></i>
+                                <span class="text-lg font-semibold">Percentage: <span class="gradient-text">96.6%</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Academic Highlights -->
+            <div class="mt-16 grid md:grid-cols-3 gap-8">
+                <div class="card p-8 text-center fade-in delay-400">
+                    <div class="w-16 h-16 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-medal text-2xl text-dark"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 gradient-text">Academic Excellence</h3>
+                    <p class="text-gray-400">Consistent high performance across all education levels</p>
+                </div>
+                <div class="card p-8 text-center fade-in delay-500">
+                    <div class="w-16 h-16 bg-gradient-to-r from-secondary to-accent rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-brain text-2xl text-dark"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 gradient-text">STEM Focus</h3>
+                    <p class="text-gray-400">Strong foundation in Mathematics and Computer Science</p>
+                </div>
+                <div class="card p-8 text-center fade-in delay-600">
+                    <div class="w-16 h-16 bg-gradient-to-r from-accent to-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-chart-line text-2xl text-dark"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 gradient-text">Continuous Growth</h3>
+                    <p class="text-gray-400">Progressive improvement in academic achievements</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-5xl font-bold gradient-text mb-4">Experience</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Work Experience -->
+                <div class="slide-left">
+                    <h3 class="text-3xl font-semibold mb-8 gradient-text flex items-center">
+                        <i class="fas fa-briefcase mr-4"></i>
+                        Work Experience
+                    </h3>
+                    <div class="space-y-8">
+                        <div class="card p-8 fade-in delay-100">
+                            <div class="flex items-start justify-between mb-4">
+                                <div>
+                                    <h4 class="text-xl font-semibold gradient-text">[Your Position]</h4>
+                                    <p class="text-gray-400">[Company Name]</p>
+                                </div>
+                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm">[Year]</span>
+                            </div>
+                            <p class="text-gray-300 mb-4">[Add your work experience description here - what you did, achievements, and impact]</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm">[Skill 1]</span>
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm">[Skill 2]</span>
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm">[Skill 3]</span>
+                            </div>
+                        </div>
+                        <div class="card p-8 fade-in delay-200">
+                            <div class="flex items-start justify-between mb-4">
+                                <div>
+                                    <h4 class="text-xl font-semibold gradient-text">[Previous Position]</h4>
+                                    <p class="text-gray-400">[Previous Company]</p>
+                                </div>
+                                <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm">[Year Range]</span>
+                            </div>
+                            <p class="text-gray-300 mb-4">[Add your previous work experience details here]</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm">[Skill 1]</span>
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm">[Skill 2]</span>
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm">[Skill 3]</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Volunteer Experience -->
+                <div class="slide-right">
+                    <h3 class="text-3xl font-semibold mb-8 gradient-text flex items-center">
+                        <i class="fas fa-heart mr-4"></i>
+                        Volunteer Experience
+                    </h3>
+                    <div class="space-y-8">
+                        <div class="card p-8 fade-in delay-300">
+                            <div class="flex items-start justify-between mb-4">
+                                <div>
+                                    <h4 class="text-xl font-semibold gradient-text">[Volunteer Role]</h4>
+                                    <p class="text-gray-400">[Organization Name]</p>
+                                </div>
+                                <span class="bg-accent/20 text-accent px-3 py-1 rounded-full text-sm">[Year]</span>
+                            </div>
+                            <p class="text-gray-300 mb-4">[Add your volunteer experience description here - what you contributed and the impact you made]</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm">[Skill 1]</span>
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm">[Skill 2]</span>
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm">[Skill 3]</span>
+                            </div>
+                        </div>
+                        <div class="card p-8 fade-in delay-400">
+                            <div class="flex items-start justify-between mb-4">
+                                <div>
+                                    <h4 class="text-xl font-semibold gradient-text">[Another Volunteer Role]</h4>
+                                    <p class="text-gray-400">[Another Organization]</p>
+                                </div>
+                                <span class="bg-accent/20 text-accent px-3 py-1 rounded-full text-sm">[Year]</span>
+                            </div>
+                            <p class="text-gray-300 mb-4">[Add details about another volunteer experience if you have one]</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm">[Skill 1]</span>
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm">[Skill 2]</span>
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm">[Skill 3]</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-5xl font-bold gradient-text mb-4">Skills & Technologies</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="skill-card p-8 text-center fade-in delay-100">
+                    <div class="circular-progress mx-auto mb-6">
+                        <svg>
+                            <circle class="progress-bg" cx="60" cy="60" r="45"></circle>
+                            <circle class="progress-bar" cx="60" cy="60" r="45" data-progress="85"></circle>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-2xl font-bold gradient-text">85%</span>
+                        </div>
+                    </div>
+                    <i class="fab fa-python skill-icon text-4xl text-primary mb-4"></i>
+                    <h3 class="skill-title text-xl font-semibold mb-2">Python</h3>
+                    <p class="text-gray-400">Advanced</p>
+                </div>
+                <div class="skill-card p-8 text-center fade-in delay-200">
+                    <div class="circular-progress mx-auto mb-6">
+                        <svg>
+                            <circle class="progress-bg" cx="60" cy="60" r="45"></circle>
+                            <circle class="progress-bar" cx="60" cy="60" r="45" data-progress="75"></circle>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-2xl font-bold gradient-text">75%</span>
+                        </div>
+                    </div>
+                    <i class="fas fa-chart-bar skill-icon text-4xl text-primary mb-4"></i>
+                    <h3 class="skill-title text-xl font-semibold mb-2">Data Analysis</h3>
+                    <p class="text-gray-400">Intermediate</p>
+                </div>
+                <div class="skill-card p-8 text-center fade-in delay-300">
+                    <div class="circular-progress mx-auto mb-6">
+                        <svg>
+                            <circle class="progress-bg" cx="60" cy="60" r="45"></circle>
+                            <circle class="progress-bar" cx="60" cy="60" r="45" data-progress="70"></circle>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-2xl font-bold gradient-text">70%</span>
+                        </div>
+                    </div>
+                    <i class="fas fa-brain skill-icon text-4xl text-primary mb-4"></i>
+                    <h3 class="skill-title text-xl font-semibold mb-2">Machine Learning</h3>
+                    <p class="text-gray-400">Learning</p>
+                </div>
+                <div class="skill-card p-8 text-center fade-in delay-400">
+                    <div class="circular-progress mx-auto mb-6">
+                        <svg>
+                            <circle class="progress-bg" cx="60" cy="60" r="45"></circle>
+                            <circle class="progress-bar" cx="60" cy="60" r="45" data-progress="65"></circle>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-2xl font-bold gradient-text">65%</span>
+                        </div>
+                    </div>
+                    <i class="fas fa-database skill-icon text-4xl text-primary mb-4"></i>
+                    <h3 class="skill-title text-xl font-semibold mb-2">SQL</h3>
+                    <p class="text-gray-400">Intermediate</p>
+                </div>
+                <div class="skill-card p-8 text-center fade-in delay-500">
+                    <div class="circular-progress mx-auto mb-6">
+                        <svg>
+                            <circle class="progress-bg" cx="60" cy="60" r="45"></circle>
+                            <circle class="progress-bar" cx="60" cy="60" r="45" data-progress="70"></circle>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-2xl font-bold gradient-text">70%</span>
+                        </div>
+                    </div>
+                    <i class="fas fa-chart-line skill-icon text-4xl text-primary mb-4"></i>
+                    <h3 class="skill-title text-xl font-semibold mb-2">Data Visualization</h3>
+                    <p class="text-gray-400">Intermediate</p>
+                </div>
+                <div class="skill-card p-8 text-center fade-in delay-600">
+                    <div class="circular-progress mx-auto mb-6">
+                        <svg>
+                            <circle class="progress-bg" cx="60" cy="60" r="45"></circle>
+                            <circle class="progress-bar" cx="60" cy="60" r="45" data-progress="75"></circle>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-2xl font-bold gradient-text">75%</span>
+                        </div>
+                    </div>
+                    <i class="fas fa-calculator skill-icon text-4xl text-primary mb-4"></i>
+                    <h3 class="skill-title text-xl font-semibold mb-2">Statistics</h3>
+                    <p class="text-gray-400">Intermediate</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Languages Section -->
+    <section id="languages" class="py-20 relative">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-5xl font-bold gradient-text mb-4">Languages</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-16">
+                <!-- Programming Languages -->
+                <div class="slide-left">
+                    <h3 class="text-3xl font-semibold mb-8 gradient-text flex items-center">
+                        <i class="fas fa-code mr-4"></i>
+                        Programming Languages
+                    </h3>
+                    <div class="space-y-6">
+                        <div class="card p-6 fade-in delay-100">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center">
+                                    <i class="fab fa-python text-3xl text-primary mr-4"></i>
+                                    <div>
+                                        <h4 class="text-xl font-semibold">Python</h4>
+                                        <p class="text-gray-400">Advanced</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="w-32 bg-gray-700 rounded-full h-3 mb-2">
+                                        <div class="bg-gradient-to-r from-primary to-secondary h-3 rounded-full" style="width: 85%"></div>
+                                    </div>
+                                    <span class="text-sm text-gray-400">85%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card p-6 fade-in delay-200">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center">
+                                    <i class="fas fa-database text-3xl text-primary mr-4"></i>
+                                    <div>
+                                        <h4 class="text-xl font-semibold">SQL</h4>
+                                        <p class="text-gray-400">Intermediate</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="w-32 bg-gray-700 rounded-full h-3 mb-2">
+                                        <div class="bg-gradient-to-r from-primary to-secondary h-3 rounded-full" style="width: 65%"></div>
+                                    </div>
+                                    <span class="text-sm text-gray-400">65%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card p-6 fade-in delay-300">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center">
+                                    <i class="fab fa-r-project text-3xl text-primary mr-4"></i>
+                                    <div>
+                                        <h4 class="text-xl font-semibold">R</h4>
+                                        <p class="text-gray-400">Beginner</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="w-32 bg-gray-700 rounded-full h-3 mb-2">
+                                        <div class="bg-gradient-to-r from-primary to-secondary h-3 rounded-full" style="width: 40%"></div>
+                                    </div>
+                                    <span class="text-sm text-gray-400">40%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Spoken Languages -->
+                <div class="slide-right">
+                    <h3 class="text-3xl font-semibold mb-8 gradient-text flex items-center">
+                        <i class="fas fa-globe mr-4"></i>
+                        Spoken Languages
+                    </h3>
+                    <div class="space-y-6">
+                        <div class="card p-6 fade-in delay-400">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mr-4">
+                                        <span class="text-dark font-bold">🇮🇳</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xl font-semibold">Bengali</h4>
+                                        <p class="text-gray-400">Native</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="w-32 bg-gray-700 rounded-full h-3 mb-2">
+                                        <div class="bg-gradient-to-r from-primary to-secondary h-3 rounded-full" style="width: 100%"></div>
+                                    </div>
+                                    <span class="text-sm text-gray-400">Native</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card p-6 fade-in delay-500">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mr-4">
+                                        <span class="text-dark font-bold">🇮🇳</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xl font-semibold">Hindi</h4>
+                                        <p class="text-gray-400">Fluent</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="w-32 bg-gray-700 rounded-full h-3 mb-2">
+                                        <div class="bg-gradient-to-r from-primary to-secondary h-3 rounded-full" style="width: 95%"></div>
+                                    </div>
+                                    <span class="text-sm text-gray-400">95%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card p-6 fade-in delay-600">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mr-4">
+                                        <span class="text-dark font-bold">🇺🇸</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xl font-semibold">English</h4>
+                                        <p class="text-gray-400">Fluent</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="w-32 bg-gray-700 rounded-full h-3 mb-2">
+                                        <div class="bg-gradient-to-r from-primary to-secondary h-3 rounded-full" style="width: 95%"></div>
+                                    </div>
+                                    <span class="text-sm text-gray-400">95%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 relative">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-5xl font-bold gradient-text mb-4">Let's Connect</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-6"></div>
+                <p class="text-xl text-gray-300">Ready to collaborate on exciting data science projects</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-16">
+                <div class="slide-left">
+                    <h3 class="text-3xl font-semibold mb-8 gradient-text">Get In Touch</h3>
+                    <div class="space-y-8">
+                        <div class="flex items-center fade-in delay-100">
+                            <div class="w-16 h-16 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mr-6">
+                                <i class="fab fa-linkedin text-2xl text-dark"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-xl mb-2">LinkedIn</h4>
+                                <a href="https://www.linkedin.com/in/indraneel-chatterjee007/" target="_blank" class="text-primary hover:text-secondary transition-colors text-lg">indraneel-chatterjee007</a>
+                            </div>
+                        </div>
+                        <div class="flex items-center fade-in delay-200">
+                            <div class="w-16 h-16 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mr-6">
+                                <i class="fas fa-envelope text-2xl text-dark"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-xl mb-2">Email</h4>
+                                <a href="mailto:datadetectiveneel@gmail.com" class="text-primary hover:text-secondary transition-colors text-lg">datadetectiveneel@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="flex items-center fade-in delay-300">
+                            <div class="w-16 h-16 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mr-6">
+                                <i class="fab fa-github text-2xl text-dark"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-xl mb-2">GitHub</h4>
+                                <a href="https://github.com/DataDetective-Neel" target="_blank" class="text-primary hover:text-secondary transition-colors text-lg">DataDetective-Neel</a>
+                            </div>
+                        </div>
+                        <div class="flex items-center fade-in delay-400">
+                            <div class="w-16 h-16 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mr-6">
+                                <i class="fas fa-map-marker-alt text-2xl text-dark"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-xl mb-2">Location</h4>
+                                <p class="text-gray-400 text-lg">Jaipur, India</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide-right">
+                    <div class="card p-10">
+                        <h3 class="text-3xl font-semibold mb-8 gradient-text">Ready to Collaborate?</h3>
+                        <p class="text-gray-300 mb-10 text-lg leading-relaxed">
+                            I'm passionate about turning data into actionable insights and always excited to discuss new opportunities, collaborate on projects, or connect with fellow data enthusiasts.
+                        </p>
+                        <div class="space-y-6">
+                            <a href="https://www.linkedin.com/in/indraneel-chatterjee007/" target="_blank" class="glow-btn w-full text-center block">
+                                <i class="fab fa-linkedin mr-2"></i>
+                                Connect on LinkedIn
+                            </a>
+                            <a href="https://github.com/DataDetective-Neel" target="_blank" class="border-2 border-primary text-primary px-8 py-4 rounded-full font-semibold hover:bg-primary hover:text-dark transition-all duration-300 w-full text-center block">
+                                <i class="fab fa-github mr-2"></i>
+                                View GitHub Profile
+                            </a>
+                            <a href="mailto:datadetectiveneel@gmail.com" class="bg-dark-lighter border border-gray-600 text-gray-300 px-8 py-4 rounded-full font-semibold hover:bg-gray-700 transition-all duration-300 w-full text-center block">
+                                <i class="fas fa-envelope mr-2"></i>
+                                Send an Email
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark-light border-t border-white/10 py-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center">
+                <h3 class="text-3xl font-bold gradient-text mb-4">Indraneel Chatterjee</h3>
+                <p class="text-gray-400 mb-8 text-lg">Aspiring Data Scientist | Python Enthusiast | ML Explorer</p>
+                <div class="flex justify-center space-x-8 mb-8">
+                    <a href="https://www.linkedin.com/in/indraneel-chatterjee007/" target="_blank" class="text-gray-400 hover:text-primary transition-colors">
+                        <i class="fab fa-linkedin text-3xl"></i>
+                    </a>
+                    <a href="https://github.com/DataDetective-Neel" target="_blank" class="text-gray-400 hover:text-primary transition-colors">
+                        <i class="fab fa-github text-3xl"></i>
+                    </a>
+                    <a href="mailto:datadetectiveneel@gmail.com" class="text-gray-400 hover:text-primary transition-colors">
+                        <i class="fas fa-envelope text-3xl"></i>
+                    </a>
+                </div>
+                <div class="border-t border-gray-800 pt-8">
+                    <p class="text-gray-500">&copy; 2024 Indraneel Chatterjee. Crafted with passion for data science.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Create floating particles
+        function createParticles() {
+            const particles = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.width = Math.random() * 4 + 2 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                particles.appendChild(particle);
+            }
+        }
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const scrollObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const animatedElements = entry.target.querySelectorAll('.fade-in, .slide-left, .slide-right');
+                    animatedElements.forEach(el => {
+                        el.classList.add('animate');
+                    });
+
+                    // Animate circular progress bars
+                    const progressBars = entry.target.querySelectorAll('.progress-bar');
+                    progressBars.forEach(bar => {
+                        const progress = bar.getAttribute('data-progress');
+                        const circumference = 2 * Math.PI * 45;
+                        const offset = circumference - (progress / 100) * circumference;
+                        bar.style.strokeDashoffset = offset;
+                    });
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            scrollObserver.observe(section);
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+        });
+    </script>
+</body>
+</html>
