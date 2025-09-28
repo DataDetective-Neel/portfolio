@@ -299,6 +299,11 @@
         .delay-400 { animation-delay: 0.4s; }
         .delay-500 { animation-delay: 0.5s; }
         .delay-600 { animation-delay: 0.6s; }
+        @media (max-width: 767px) {
+          .desktop-nav {
+            display: none !important;
+          }
+        }
     </style>
 </head>
 <body>
@@ -310,7 +315,7 @@
     <div class="max-w-7xl mx-auto px-6 py-4">
         <div class="flex justify-between items-center">
             <div class="text-2xl font-bold gradient-text">IC</div>
-            <div class="hidden md:flex space-x-8">
+            <div class="hidden md:flex space-x-8 desktop-nav">
                 <a href="#home" class="text-gray-300 hover:text-primary transition-colors">Home</a>
                 <a href="#about" class="text-gray-300 hover:text-primary transition-colors">About</a>
                 <a href="#journey" class="text-gray-300 hover:text-primary transition-colors">Journey</a>
@@ -1243,6 +1248,7 @@
     //Portfolio ends
 </body>
 </html>
+
 
 
 
